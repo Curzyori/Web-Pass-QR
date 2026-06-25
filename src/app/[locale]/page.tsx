@@ -1,5 +1,3 @@
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "@/messages";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
@@ -15,11 +13,9 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const messages = getMessages();
 
   const navProps = {
     locale,
-    messages,
     logo: "/logo.png",
     githubRepo: "Curzyori/pass-qr",
     stars: 0,
@@ -31,14 +27,14 @@ export default async function HomePage({
     name: "PassQR",
     tagline: "Akses QR Instan ke Web & Aplikasi",
     brandColor: "blue" as const,
-    ctaPrimary: messages.hero.ctaPrimary,
-    ctaSecondary: messages.hero.ctaSecondary,
+    ctaPrimary: locale === "id" ? "Unduh APK" : "Download APK",
+    ctaSecondary: locale === "id" ? "Lihat di GitHub" : "View on GitHub",
     githubRepo: navProps.githubRepo,
     downloadUrl: "https://github.com/Curzyori/pass-qr/releases/latest",
   };
 
   const featuresProps = {
-    title: messages.features.title,
+    title: locale === "id" ? "Fitur" : "Features",
     features: [
       {
         title: "Fast QR Detection",
@@ -75,18 +71,18 @@ export default async function HomePage({
   };
 
   const installationProps = {
-    title: messages.installation.title,
-    subtitle: messages.installation.subtitle,
+    title: locale === "id" ? "Instalasi" : "Installation",
+    subtitle: locale === "id" ? "Build dari Source" : "Build from Source",
     code: "git clone https://github.com/Curzyori/pass-qr.git\ncd pass-qr\n./gradlew assembleDebug",
     brandColor: "blue" as const,
   };
 
   const downloadProps = {
-    title: messages.download.title,
+    title: locale === "id" ? "Unduh" : "Download",
     latestVersion: "v3.0.0",
-    versionLabel: messages.download.latestVersion,
+    versionLabel: locale === "id" ? "Versi Terbaru" : "Latest Version",
     files: [{ name: "PassQR-V3.0.0.apk", url: "https://github.com/Curzyori/pass-qr/releases/download/v3.0.0/PassQR-V3.0.0.apk" }],
-    sourceCodeLabel: messages.download.sourceCode,
+    sourceCodeLabel: "Source Code",
     sourceUrl: "https://github.com/Curzyori/pass-qr",
     githubRepo: navProps.githubRepo,
     brandColor: "blue" as const,
@@ -100,12 +96,12 @@ export default async function HomePage({
   };
 
   const footerProps = {
-    copyright: messages.footer.copyright,
+    copyright: "© 2026 Curzyori",
     githubRepo: navProps.githubRepo,
   };
 
   return (
-    <NextIntlClientProvider>
+    <>
       <Navbar {...navProps} />
       <Hero {...heroProps} />
       <Features {...featuresProps} />
@@ -113,6 +109,6 @@ export default async function HomePage({
       <Preview {...previewProps} />
       <DownloadSection {...downloadProps} />
       <Footer {...footerProps} />
-    </NextIntlClientProvider>
+    </>
   );
 }

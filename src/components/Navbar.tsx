@@ -9,9 +9,6 @@ import { cn } from "@/lib/utils";
 
 interface NavbarProps {
   locale: string;
-  messages: {
-    nav: { home: string; docs: string; download: string };
-  };
   logo: string;
   githubRepo: string;
   stars: number;
@@ -29,15 +26,19 @@ const brandStyles = {
   },
 };
 
-export function Navbar({ locale, messages, logo, githubRepo, stars, brandColor }: NavbarProps) {
+export function Navbar({ locale, logo, githubRepo, stars, brandColor }: NavbarProps) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const styles = brandStyles[brandColor];
 
+  const labels = locale === "id" 
+    ? { home: "Beranda", docs: "Dokumentasi", download: "Unduh" }
+    : { home: "Home", docs: "Docs", download: "Download" };
+
   const navItems = [
-    { href: `/${locale}`, label: messages.nav.home },
-    { href: `/${locale}/docs`, label: messages.nav.docs },
-    { href: `/${locale}/download`, label: messages.nav.download },
+    { href: `/${locale}`, label: labels.home },
+    { href: `/${locale}/docs`, label: labels.docs },
+    { href: `/${locale}/download`, label: labels.download },
   ];
 
   const isActive = (href: string) => pathname === href;

@@ -7,18 +7,32 @@ import { DownloadSection } from "@/components/DownloadSection";
 import { Preview } from "@/components/Preview";
 import { Scan, Globe, AppWindow, Lock, Palette, Languages } from "lucide-react";
 
+async function getGitHubStars(repo: string): Promise<number> {
+  try {
+    const res = await fetch(`https://api.github.com/repos/${repo}`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) return 0;
+    const data = await res.json();
+    return data.stargazers_count || 0;
+  } catch {
+    return 0;
+  }
+}
+
 export default async function HomePage({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const stars = await getGitHubStars("Curzyori/pass-qr");
 
   const navProps = {
     locale,
     logo: "/logo.png",
     githubRepo: "Curzyori/pass-qr",
-    stars: 0,
+    stars,
     brandColor: "blue" as const,
   };
 

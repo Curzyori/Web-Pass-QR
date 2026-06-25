@@ -11,7 +11,7 @@ interface NavbarProps {
   locale: string;
   logo: string;
   githubRepo: string;
-  stars: number;
+  stars?: number;
   brandColor: "blue" | "purple";
 }
 

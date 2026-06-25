@@ -1,8 +1,19 @@
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "@/messages";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { BookOpen, CheckCircle, Terminal, Settings, AlertCircle, FileText, Download, Scan, Globe } from "lucide-react";
+
+async function getGitHubStars(repo: string): Promise<number> {
+  try {
+    const res = await fetch(`https://api.github.com/repos/${repo}`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) return 0;
+    const data = await res.json();
+    return data.stargazers_count || 0;
+  } catch {
+    return 0;
+  }
+}
 
 export default async function DocsPage({
   params,
@@ -10,24 +21,18 @@ export default async function DocsPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const messages = getMessages();
+  const stars = await getGitHubStars("Curzyori/pass-qr");
 
   const navProps = {
     locale,
-    messages,
     logo: "/logo.png",
     githubRepo: "Curzyori/pass-qr",
-    stars: 0,
+    stars,
     brandColor: "blue" as const,
   };
 
-  const footerProps = {
-    copyright: messages.footer.copyright,
-    githubRepo: navProps.githubRepo,
-  };
-
   return (
-    <NextIntlClientProvider>
+    <>
       <Navbar {...navProps} />
       
       <main className="flex-1 pt-24 pb-16 px-4">
@@ -184,7 +189,7 @@ cd pass-qr
         </div>
       </main>
 
-      <Footer {...footerProps} />
-    </NextIntlClientProvider>
+      <Footer copyright="© 2026 Curzyori" githubRepo={navProps.githubRepo} />
+    </>
   );
 }

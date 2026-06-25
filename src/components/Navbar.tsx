@@ -32,12 +32,13 @@ export function Navbar({ locale, logo, githubRepo, stars, brandColor }: NavbarPr
   const styles = brandStyles[brandColor];
 
   const labels = locale === "id" 
-    ? { home: "Beranda", docs: "Dokumentasi" }
-    : { home: "Home", docs: "Docs" };
+    ? { home: "Beranda", docs: "Dokumentasi", download: "Unduh" }
+    : { home: "Home", docs: "Docs", download: "Download" };
 
   const navItems = [
     { href: `/${locale}`, label: labels.home },
     { href: `/${locale}/docs`, label: labels.docs },
+    { href: `/${locale}#download`, label: labels.download },
   ];
 
   const isActive = (href: string) => pathname === href;

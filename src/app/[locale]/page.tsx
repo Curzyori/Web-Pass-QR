@@ -95,7 +95,7 @@ export default async function HomePage({
     title: locale === "id" ? "Unduh" : "Download",
     latestVersion: "v3.0.0",
     versionLabel: locale === "id" ? "Versi Terbaru" : "Latest Version",
-    files: [{ name: "PassQR-v3.0.0.apk", url: "https://github.com/Curzyori/pass-qr/releases/download/V3.0.0/PassQR-v3.0.0.apk" }],
+    files: [{ name: "PassQR-v3.0.0.apk", url: "https://github.com/Curzyori/pass-qr/releases/tag/V3.0.0" }],
     sourceCodeLabel: "Source Code",
     sourceUrl: "https://github.com/Curzyori/pass-qr",
     githubRepo: navProps.githubRepo,

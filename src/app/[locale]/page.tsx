@@ -39,7 +39,7 @@ export default async function HomePage({
   const heroProps = {
     logo: "/logo.png",
     name: "PassQR",
-    tagline: "Akses QR Instan ke Web & Aplikasi",
+    tagline: locale === "id" ? "Akses QR Instan ke Web & Aplikasi" : "Instant QR Access to Web & Apps",
     brandColor: "blue" as const,
     ctaPrimary: locale === "id" ? "Unduh APK" : "Download APK",
     ctaSecondary: locale === "id" ? "Lihat di GitHub" : "View on GitHub",
@@ -51,33 +51,45 @@ export default async function HomePage({
     title: locale === "id" ? "Fitur" : "Features",
     features: [
       {
-        title: "Fast QR Detection",
-        description: "Uses optimized scanning logic for instant feedback with high accuracy",
+        title: locale === "id" ? "Deteksi QR Cepat" : "Fast QR Detection",
+        description: locale === "id"
+          ? "Menggunakan logika pemindaian yang dioptimalkan untuk umpan balik instan dengan akurasi tinggi."
+          : "Uses optimized scanning logic for instant feedback with high accuracy.",
         icon: Scan,
       },
       {
-        title: "Web Mode",
-        description: "Opens detected URLs in a built-in secure webview",
+        title: locale === "id" ? "Mode Web" : "Web Mode",
+        description: locale === "id"
+          ? "Membuka URL yang terdeteksi di webview aman bawaan."
+          : "Opens detected URLs in a built-in secure webview.",
         icon: Globe,
       },
       {
-        title: "App Mode",
-        description: "Navigates directly to external apps via detected links",
+        title: locale === "id" ? "Mode Aplikasi" : "App Mode",
+        description: locale === "id"
+          ? "Navigasi langsung ke aplikasi eksternal melalui tautan yang terdeteksi."
+          : "Navigates directly to external apps via detected links.",
         icon: AppWindow,
       },
       {
-        title: "Privacy First",
-        description: "No data tracking, completely local processing",
+        title: locale === "id" ? "Privasi Utama" : "Privacy First",
+        description: locale === "id"
+          ? "Tanpa pelacakan data, pemrosesan sepenuhnya lokal."
+          : "No data tracking, completely local processing.",
         icon: Lock,
       },
       {
-        title: "Dark Mode",
-        description: "System-wide dark and light theme support",
+        title: locale === "id" ? "Mode Gelap" : "Dark Mode",
+        description: locale === "id"
+          ? "Dukungan tema gelap dan terang secara sistem."
+          : "System-wide dark and light theme support.",
         icon: Palette,
       },
       {
-        title: "Multi-Language",
-        description: "Supports English and Indonesian",
+        title: locale === "id" ? "Multi-Bahasa" : "Multi-Language",
+        description: locale === "id"
+          ? "Mendukung Bahasa Inggris dan Indonesia."
+          : "Supports English and Indonesian.",
         icon: Languages,
       },
     ],
@@ -95,7 +107,7 @@ export default async function HomePage({
     title: locale === "id" ? "Unduh" : "Download",
     latestVersion: "v3.0.0",
     versionLabel: locale === "id" ? "Versi Terbaru" : "Latest Version",
-    files: [{ name: "PassQR-v3.0.0.apk", url: "https://github.com/Curzyori/pass-qr/releases/tag/V3.0.0" }],
+    files: [{ name: "PassQR-v3.0.0.apk", url: "https://github.com/Curzyori/pass-qr/releases/download/V3.0.0/PassQR-v3.0.0.apk" }],
     sourceCodeLabel: "Source Code",
     sourceUrl: "https://github.com/Curzyori/pass-qr",
     githubRepo: navProps.githubRepo,
@@ -112,6 +124,8 @@ export default async function HomePage({
   const footerProps = {
     copyright: "© 2026 Curzyori",
     githubRepo: navProps.githubRepo,
+    licenseName: "Apache-2.0",
+    licenseUrl: "https://github.com/Curzyori/pass-qr/blob/main/LICENSE",
   };
 
   return (

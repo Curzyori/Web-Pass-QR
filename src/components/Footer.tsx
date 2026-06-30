@@ -16,6 +16,7 @@ export function Footer({ copyright, githubRepo }: FooterProps) {
             href={`https://github.com/${githubRepo}`}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="View on GitHub (opens in new tab)"
             className="flex items-center gap-2 text-sm text-foreground/60 hover:text-foreground transition-colors"
           >
             <GitHubIcon className="h-4 w-4" />
@@ -26,6 +27,7 @@ export function Footer({ copyright, githubRepo }: FooterProps) {
             href="https://donate.curzy.dev/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Support the project on Donate (opens in new tab)"
             className="flex items-center gap-2 text-sm text-foreground/60 hover:text-foreground transition-colors"
           >
             <HeartIcon className="h-4 w-4" />

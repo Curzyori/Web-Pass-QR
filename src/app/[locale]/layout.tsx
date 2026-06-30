@@ -21,6 +21,7 @@ export async function generateMetadata({
   const isIndo = locale === "id";
 
   return {
+    metadataBase: new URL("https://pass-qr.curzy.dev"),
     title: "PassQR",
     description: isIndo
       ? "Akses QR Instan ke Web & Aplikasi"

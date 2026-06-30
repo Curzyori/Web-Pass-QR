@@ -1,5 +1,4 @@
-"use client";
-
+import Image from "next/image";
 import { Download } from "lucide-react";
 import { GitHubIcon } from "@/components/ui/Icons";
 import { Button } from "@/components/ui/Button";
@@ -43,10 +42,13 @@ export function Hero({
       <div className="text-center max-w-3xl mx-auto">
         {/* Logo */}
         <div className="mb-6 flex justify-center">
-          <img
+          <Image
             src={logo}
             alt={`${name} Logo`}
+            width={128}
+            height={128}
             className="h-32 w-32 object-contain"
+            priority
           />
         </div>
 
@@ -56,28 +58,36 @@ export function Hero({
         </h1>
 
         {/* Tagline */}
-        <p className="text-xl sm:text-2xl text-foreground/60 mb-8 max-w-2xl mx-auto">
-          {tagline}
-        </p>
+        <p className="text-xl text-foreground/70 mb-8">{tagline}</p>
 
-        {/* Gradient Accent Line */}
-        <div className={`h-1 w-24 mx-auto mb-12 bg-gradient-to-r ${styles.gradient} rounded-full`} />
-
-        {/* CTA Buttons */}
+        {/* Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href={downloadUrl} target="_blank" rel="noopener noreferrer">
-            <Button size="lg" className={styles.button}>
-              <Download className="h-5 w-5 mr-2" />
+          <Button
+            asChild
+            className={styles.button}
+          >
+            <a href={downloadUrl} target="_blank" rel="noopener noreferrer">
+              <Download className="h-5 w-5" />
               {ctaPrimary}
-            </Button>
-          </a>
-          <a href={`https://github.com/${githubRepo}`} target="_blank" rel="noopener noreferrer">
-            <Button size="lg" variant="outline">
-              <GitHubIcon className="h-5 w-5 mr-2" />
+            </a>
+          </Button>
+          <Button
+            asChild
+            variant="outline"
+          >
+            <a
+              href={`https://github.com/${githubRepo}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GitHubIcon className="h-5 w-5" />
               {ctaSecondary}
-            </Button>
-          </a>
+            </a>
+          </Button>
         </div>
+
+        {/* Gradient decoration */}
+        <div className={`mt-16 h-1 w-32 mx-auto rounded-full bg-gradient-to-r ${styles.gradient}`} />
       </div>
     </section>
   );

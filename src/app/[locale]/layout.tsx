@@ -12,18 +12,46 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "PassQR",
-  description: "Akses QR Instan ke Web & Aplikasi",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isIndo = locale === "id";
 
-export default function LocaleLayout({
+  return {
+    title: "PassQR",
+    description: isIndo
+      ? "Akses QR Instan ke Web & Aplikasi"
+      : "Instant QR Access to Web & Apps",
+    other: {
+      "og:title": "PassQR",
+      "og:description": isIndo
+        ? "Akses QR Instan ke Web & Aplikasi"
+        : "Instant QR Access to Web & Apps",
+      "og:image": "/og-image.png",
+      "og:type": "website",
+      "twitter:card": "summary_large_image",
+      "twitter:title": "PassQR",
+      "twitter:description": isIndo
+        ? "Akses QR Instan ke Web & Aplikasi"
+        : "Instant QR Access to Web & Apps",
+      "twitter:image": "/og-image.png",
+    },
+  };
+}
+
+export default async function LocaleLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang={locale} className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="min-h-screen flex flex-col antialiased">
         {children}
       </body>

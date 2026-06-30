@@ -27,6 +27,7 @@ export default async function DocsPage({
   const navProps = {
     locale,
     logo: "/logo.png",
+    name: "PassQR",
     githubRepo: "Curzyori/pass-qr",
     stars,
     brandColor: "blue" as const,
@@ -34,9 +35,16 @@ export default async function DocsPage({
 
   return (
     <>
+      {/* Skip to main content */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:font-medium focus:shadow-lg"
+      >
+        {isIndo ? "Lewati ke konten utama" : "Skip to main content"}
+      </a>
+
       <Navbar {...navProps} />
-      
-      <main className="flex-1 pt-24 pb-16 px-4">
+      <main id="main-content" className="flex-1 pt-24 pb-16 px-4">
         <div className="mx-auto max-w-4xl">
           <h1 className="text-4xl font-bold mb-8">
             {isIndo ? "Dokumentasi PassQR" : "PassQR Documentation"}
@@ -204,7 +212,7 @@ cd pass-qr
               </div>
               <div className="bg-secondary/30 rounded-lg p-4">
                 <h3 className="font-medium mb-2">{isIndo ? "Halaman web tidak memuat" : "Web page is not loading"}</h3>
-                <p className="text-foreground/70 text-sm">{isIndo ? "Periksa koneksi internet Anda. Beberapa situs web mungkin memblokir akses webview. Anda dapat menggunakan opsi \"Buka di Browser\" sebagai gantinya." : "Check your internet connection. Some websites may block webview access. You can use the \\"Open in Browser\\" option instead."}</p>
+                <p className="text-foreground/70 text-sm">{isIndo ? "Periksa koneksi internet Anda. Beberapa situs web mungkin memblokir akses webview. Anda dapat menggunakan opsi \"Buka di Browser\" sebagai gantinya." : "Check your internet connection. Some websites may block webview access. You can use the \"Open in Browser\" option instead."}</p>
               </div>
             </div>
           </section>
@@ -223,7 +231,7 @@ cd pass-qr
         </div>
       </main>
 
-      <Footer copyright="© 2026 Curzyori" githubRepo={navProps.githubRepo} licenseName="Apache-2.0" licenseUrl="https://github.com/Curzyori/pass-qr/blob/main/LICENSE" />
+      <Footer copyright="© 2026 Curzyori" githubRepo="Curzyori/pass-qr" />
     </>
   );
 }

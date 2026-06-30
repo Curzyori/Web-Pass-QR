@@ -7,7 +7,7 @@ interface FooterProps {
 
 export function Footer({ copyright, githubRepo }: FooterProps) {
   return (
-    <footer className="border-t border-foreground/10 py-8 px-4">
+    <footer aria-label="Footer" className="border-t border-foreground/10 py-8 px-4">
       <div className="mx-auto max-w-6xl flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-sm text-foreground/60">{copyright}</p>
 
